@@ -14,7 +14,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+//WebMvcTest Annotation 붙이시면 대응되는 Controller class도 넣어주셔야 합니다.
+@WebMvcTest(controllers = HelloController.class)
 public class HelloControllerTest {
 
     @Autowired
