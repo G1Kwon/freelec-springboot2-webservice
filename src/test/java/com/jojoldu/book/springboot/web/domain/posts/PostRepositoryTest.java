@@ -15,12 +15,16 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
+//별다른 설정 없이 H2 DB를 자동으로 실행해준다.
 @SpringBootTest
 public class PostRepositoryTest {
     @Autowired
     PostsRepository postsRepository;
 
-    @After //
+    //Junit에서 단위 테스트가 끝날 때마다 수해오디는 메소드를 지정한다.
+    //보통은 배포 전 전체 테스트를 수행할 때 테스트간 데이터 침범을 막기 위해 사용한다.
+    //여러 테스트가 동시에 수행되면 테스트용 DB 데이터가 그대로 남아있어 다음 테스트시 실패할 가능성이 있다.
+    @After
     public void cleanup() {
         postsRepository.deleteAll();
     }
@@ -30,6 +34,7 @@ public class PostRepositoryTest {
         String title = "테스트게시글";
         String content = "테스트본문";
 
+        //테이블 posts에 insert/update를 수행한다.
         postsRepository.save(Posts.builder()
                 .title(title)
                 .content(content)
