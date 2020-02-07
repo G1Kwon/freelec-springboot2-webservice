@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.web;
 
+import com.jojoldu.book.springboot.config.auth.LoginUser;
 import com.jojoldu.book.springboot.config.auth.dto.SessionUser;
 import com.jojoldu.book.springboot.service.PostsService;
 import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
@@ -16,9 +17,21 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     @GetMapping("/")
+    public String index(Model model, @LoginUser SessionUser user) {
+
+        model.addAttribute("posts", postsService.findAllDesc());
+
+        if(user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        return "index";
+    }
+
+//  private final HttpSession httpSession;
+
+/*    @GetMapping("/")
     public String index(Model model) {
         //Model
         //서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
@@ -35,7 +48,7 @@ public class IndexController {
             model.addAttribute("userName", user.getName());
         }
         return "index";
-    }
+    }*/
 
     @GetMapping("/posts/save")
     public String postsSave() {
