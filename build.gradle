@@ -30,6 +30,7 @@ dependencies {
     compile('org.projectlombok:lombok')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('com.h2database:h2')
+    compile('org.springframework.session:spring-session-jdbc')
 
     //https://tube-life.tistory.com/14 gradle 5버전일 경우에만 실행
     //testCompile('org.projectlombok:lombok')
@@ -38,4 +39,5 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-mustache')
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile("org.springframework.security:spring-security-test")
 }
